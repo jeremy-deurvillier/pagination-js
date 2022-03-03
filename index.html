@@ -1,0 +1,178 @@
+<!DOCTYPE html><html>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<title>JS Pagination</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	</head>
+	<body>
+		<h1 class="center-align">Liste de Héros</h1>
+		<div class="my-lists container">
+			<!-- Pagination avec options -->
+			<h2>Pagination avec options</h2>
+			<div id="heroes-list-with-options" data-pagination-wrapper="heroes-list-with-options">
+				<div data-pagination-options="list">
+					<!-- Contient les options de la pagination (filtre, tri ...) -->
+					<form method="POST" action="#">
+						<div class="row">
+							<div class="col s3">
+								<label for="props">Filtrer par :</label>
+								<select id="props" data-pagination-filter="properties" class="browser-default">
+									<option value="id">Id</option>
+									<option value="description">Description</option>
+									<option value="name">Nom</option>
+									<option value="modified">Dernière modification</option>
+								</select>
+							</div>
+							<div class="col s3">
+								<label for="ordre">Ordre :</label>
+								<select id="ordre" data-pagination-dir="order" class="browser-default">
+									<option value="asc">Croissant</option>
+									<option value="desc">Décroissant</option>
+								</select>
+							</div>
+							<div class="col s3">
+								<label>Recherche :</label>
+								<input type="text" id="search" data-pagination-search="term" class="browser-default" />
+							</div>
+						</div>
+					</form>
+				</div>
+				<div data-pagination-container="list" class="row">
+					<!-- Contient le template HTML à utilisé pour chaque donnée à afficher -->
+					<div class="article-container col s4" data-pagination-template="item" style="display:none;">
+						<div id="((id))" class="card large" data-pagination="attr" data-pagination-attr="id">
+							<div class="card-image">
+								<img src="((image))" class="responsive-img" data-pagination="attr" data-pagination-attr="src" />
+								<div class="row">
+									<div class="card-title col s12" style="background:rgba(0,0,0,.5);" data-pagination="name"></div>
+								</div>
+							</div>
+							<div class="card-content">
+								<div class="truncate">
+									<span class="deep-purple-text darken-4">Full-name : </span><span data-pagination="biography.full-name"></span><br />
+									<span class="deep-purple-text darken-4">Place of birth : </span><span data-pagination="biography.place-of-birth"></span><br />
+									<span class="deep-purple-text darken-4">First appearance : </span><span data-pagination="biography.first-appearance"></span><br />
+									<span class="deep-purple-text darken-4">Ajouté par : </span><span data-pagination="added-by"></span>
+								</div>
+								<div class="card-action center-align">
+									<a href="#lorem-modal" data-pagination="target" class="btn modal-trigger">Lire</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="center-align" data-pagination-navigation="counter">
+					<!-- Contient les liens de navigation de la pagination -->
+				</div>
+				<div id="lorem-modal" class="modal modal-fixed-footer" data-pagination-single="single">
+					<!-- Contient un affichage plus détaillé d'un item -->
+					<div class="modal-content">
+						<h3 data-pagination="name"></h3>
+						<div class="row">
+							<div class="col s4">
+								<img src="((image))" class="responsive-img" data-pagination="attr" data-pagination-attr="src" />
+								<p><span>ID : </span><span data-pagination="id"></span></p>
+							</div>
+							<div class="col s8">
+								<h4>Biography</h4>
+								<p class="biography">
+									<span class="deep-purple-text darken-4">Full-name : </span><span data-pagination="biography.full-name"></span><br />
+									<span class="deep-purple-text darken-4">Place of birth : </span><span data-pagination="biography.place-of-birth"></span><br />
+									<span class="deep-purple-text darken-4">First appearance : </span><span data-pagination="biography.first-appearance"></span><br />
+									<span class="deep-purple-text darken-4">Alignment : </span><span data-pagination="biography.alignment"></span><br />
+									<span class="deep-purple-text darken-4">Publisher : </span><span data-pagination="biography.publisher"></span>
+								</p>
+								<h4>Appearance</h4>
+								<p class="appearance">
+									<span class="deep-purple-text darken-4">Gender : </span><span data-pagination="appearance.gender"></span><br />
+									<span class="deep-purple-text darken-4">Race : </span><span data-pagination="appearance.race"></span><br />
+									<span class="deep-purple-text darken-4">Eye color : </span><span data-pagination="appearance.eye"></span><br />
+									<span class="deep-purple-text darken-4">Hair color : </span><span data-pagination="appearance.hair"></span>
+								</p>
+								<h4>Work</h4>
+								<p class="work">
+									<span class="deep-purple-text darken-4">Occupation : </span><span data-pagination="work.occupation"></span><br />
+									<span class="deep-purple-text darken-4">Base : </span><span data-pagination="work.base"></span>
+								</p>
+								<h4>Connections</h4>
+								<p class="connections">
+									<span class="deep-purple-text darken-4">Group affiliation : </span><span data-pagination="connections.group-affiliation"></span><br />
+									<span class="deep-purple-text darken-4">Relatives : </span><span data-pagination="connections.relatives"></span>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a href="#" class="btn modal-close">Fermer</a>
+					</div>
+				</div>
+			</div>
+			<!-- Pagination sans option -->
+			<h2>Pagination sans option</h2>
+			<div id="heroes-list-without-option" data-pagination-wrapper="heroes-list-without-option">
+				<div data-pagination-container="list" class="row">
+					<!-- Contient le template HTML à utilisé pour chaque donnée à afficher -->
+					<div class="article-container col s4" data-pagination-template="item" style="display:none;">
+						<div class="card small">
+							<div class="card-image">
+								<img src="((image))" class="responsive-img" data-pagination="attr" data-pagination-attr="src" />
+								<div class="row">
+									<div class="card-title col s12" style="background:rgba(0,0,0,.5);" data-pagination="name"></div>
+								</div>
+							</div>
+							<div class="card-content">
+								<div class="truncate" data-pagination="description"></div>
+								<div class="card-action center-align">
+									<a href="#lorem-modal" data-pagination="target" class="btn modal-trigger">Voir plus</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="center-align" data-pagination-navigation="input">
+					<!-- Contient les liens de navigation de la pagination -->
+				</div>
+			</div>
+			<!-- Pagination avec filtre -->
+			<h2>Pagination avec filtre</h2>
+			<div id="heroes-list-with-filter" data-pagination-wrapper="heroes-list-with-filter">
+				<div data-pagination-options="list">
+					<form method="POST" action="#">
+						<div class="row">
+							<div class="col s3">
+								<label>Recherche :</label>
+								<input type="text" id="searchhero" data-pagination-search="term" class="browser-default" />
+							</div>
+						</div>
+					</form>
+				</div>
+				<div data-pagination-container="list" class="row">
+					<!-- Contient le template HTML à utilisé pour chaque donnée à afficher -->
+					<div class="article-container col s4" data-pagination-template="item" style="display:none;">
+						<div class="card small">
+							<div class="card-image">
+								<img src="((image))" class="responsive-img" data-pagination="attr" data-pagination-attr="src" />
+								<div class="row">
+									<div class="card-title col s12" style="background:rgba(0,0,0,.5);" data-pagination="name"></div>
+								</div>
+							</div>
+							<div class="card-content">
+								<div class="truncate" data-pagination="description"></div>
+								<div class="card-action center-align">
+									<a href="#lorem-modal" data-pagination="target" class="btn modal-trigger">Voir plus</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="center-align" data-pagination-navigation="counter">
+					<!-- Contient les liens de navigation de la pagination -->
+				</div>
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+		<script src="js/my-list-of-heroes.js"></script>
+		<script src="js/Pagination.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>
