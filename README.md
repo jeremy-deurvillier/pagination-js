@@ -1,4 +1,4 @@
-#Pagination.js
+# [LABO] Pagination.js
 
 *A library to paginate a list of objects.*
 
