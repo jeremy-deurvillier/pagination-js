@@ -5,6 +5,9 @@
 * 	- Voir design personnalisable pour thème input (dans config ?)
 */
 
+/* ** Code review ?
+* */
+
 function changepage(wrapper, page) {
 	let parent = wrapper.querySelector('[data-pagination-navigation] > ul')
 	let selector = '[data-pagination-page="' + page + '"]'
